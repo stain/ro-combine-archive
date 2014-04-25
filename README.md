@@ -4,7 +4,9 @@ ro-combine-archive
 Convert/enrich [Combine Archive (OMEX)](http://co.mbine.org/documents/archive) to 
 [Research Object Bundle](https://w3id.org/bundle).
 
-(c) University of Manchester 2014
+(c) University of Manchester 2014.
+
+License: [LICENSE.md](MIT license).
 
 
 This tool enrich/convert
@@ -19,5 +21,5 @@ and do the conversion from RO bundle to OMEX.
 
 Authors
 -------
-* [Stian Soiland-Reyes](http://orcid.org/0000-0001-9842-9718) <soiland-reyes@cs.manchester.ac.uk>
-* [Matthew Gamble](http://orcid.org/0000-0003-4913-1485) <matthew.gamble@gmail.com>
+* [Stian Soiland-Reyes](http://orcid.org/0000-0001-9842-9718) &lt;soiland-reyes@cs.manchester.ac.uk&gt;
+* [Matthew Gamble](http://orcid.org/0000-0003-4913-1485) &lt;matthew.gamble@gmail.com&gt;
