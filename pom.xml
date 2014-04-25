@@ -8,7 +8,7 @@
 	</parent>
 	<groupId>org.researchobject.ro-combine-archive</groupId>
 	<artifactId>ro-combine-archive</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>Combine Archive / RO interoperability</name>
 
 	<dependencies>
@@ -24,6 +24,53 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <!--<version>2.0</version> does not work with Maven 2 :( -->
+                <version>1.7.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>standalone</shadedClassifierName>
+                            
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.researchobject.combinearchive.CombineToRO</mainClass>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+                                    <resource>META-INF/spring</resource>
+                                </transformer>
+                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+                    				<resource>META-INF/README</resource>
+                    				<file>README.md</file>                    				
+                				</transformer>                				                               
+                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+                    				<resource>log4j.properties</resource>
+                    				<file>src/shade/resouces/log4j.properties</file>                    				
+                				</transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+                    				<resource>logging..properties</resource>
+                    				<file>src/shade/resouces/logging.properties</file>                    				
+                				</transformer>
+                                
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+    	</plugins>
+    </build>
+
 
 	<scm>
 		<connection>scm:git:git://github.com/stain/ro-combine-archive.git</connection>
