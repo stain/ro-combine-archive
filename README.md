@@ -4,9 +4,10 @@ ro-combine-archive
 Convert/enrich [Combine Archive (OMEX)](http://co.mbine.org/documents/archive) to 
 [Research Object Bundle](https://w3id.org/bundle).
 
-(c) University of Manchester 2014.
+(c) University of Manchester 2014
+http://www.mygrid.org.uk/
 
-License: [LICENSE.md](MIT license).
+License: [LICENSE.md](MIT license)
 
 
 This tool enrich/convert
