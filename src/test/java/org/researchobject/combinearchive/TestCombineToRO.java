@@ -10,7 +10,6 @@ import org.junit.Test;
 
 public class TestCombineToRO {
 
-	@Ignore("Invalid ZIP paths")
 	@Test
 	public void convertBoris() throws Exception {
 		Path file = Files.createTempFile("Boris", ".omex");
