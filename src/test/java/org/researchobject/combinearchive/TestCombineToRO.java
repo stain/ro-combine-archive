@@ -4,12 +4,36 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.junit.Ignore;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestCombineToRO {
 
+	@BeforeClass
+	public static void setLogging() {
+		Logger logger = Logger.getLogger("");
+		//logger.setLevel(Level.FINER);
+		ConsoleHandler console = new ConsoleHandler();
+		console.setLevel(Level.FINEST);
+		logger.addHandler(console);
+		Logger.getLogger("org.researchobject").setLevel(Level.FINEST);
+	}
+	
+	
+	@Test
+	public void convertAslanidi() throws Exception {
+		Path file = Files.createTempFile("aslanidi", ".zip");
+		try (InputStream src = getClass().getResourceAsStream("/aslanidi_purkinje_model_2009.zip")) {
+			Files.copy(src, file, StandardCopyOption.REPLACE_EXISTING);
+		}
+		CombineToRO.combineToRO(file);
+		System.out.println(file);		
+	}
+	
 	@Test
 	public void convertBoris() throws Exception {
 		Path file = Files.createTempFile("Boris", ".omex");
