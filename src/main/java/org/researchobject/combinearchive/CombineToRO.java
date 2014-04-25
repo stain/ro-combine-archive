@@ -38,17 +38,11 @@ public class CombineToRO {
 				Manifest roManifest = bundle.getManifest();
 				roManifest.getManifest().add(manifestXml);
 				roManifest.setCreatedOn(Files.getLastModifiedTime(manifestXml));
-				
-				
-				// FIXME: Need a single method to avoid this
-				List<PathMetadata> aggregates = roManifest.getAggregates();
-				aggregates.remove(roManifest.getAggregation(manifestXml));
-				roManifest.setAggregates(aggregates);
-				
-				
+								
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				factory.setNamespaceAware(true);
 				DocumentBuilder db = factory.newDocumentBuilder();
+				
 				try (InputStream input = Files.newInputStream(manifestXml)) {				
 					Document a = db.parse(input);
 					NodeList contentNodes = a.getElementsByTagNameNS("http://identifiers.org/combine.specifications/omex-manifest", "content");
@@ -57,24 +51,24 @@ public class CombineToRO {
 						String location = item.getAttributes().getNamedItem("location").getTextContent();
 						String format = item.getAttributes().getNamedItem("format").getTextContent();
 						URI loc = manifestXml.toUri().resolve(location);
+						if (loc.equals(manifestXml.toUri()) || loc.equals(bundle.getRoot().toUri())) {
+							// Avoid aggregating the RO or its manifest
+							continue;
+						}						
 						//System.out.println(loc);
 						if (! bundle.getRoot().toUri().relativize(loc).isAbsolute() &&
 								! Files.exists(bundle.getFileSystem().provider().getPath(loc))) { 
 							System.out.println("Missing: " + location);
 							continue;
 						}
-					
-						
 						PathMetadata aggr = roManifest.getAggregation(loc);
 						aggr.setMediatype(format);
 					}
 				}
-			}			
-			
-//			List<Path> items = null; // TODO: Get from manifest 
-//			for (Path p : items) {
-//				PathMetadata aggr = bundle.getManifest().getAggregation(p);
-//				
+				
+				
+				
+			}						
 		}
 	}
 
