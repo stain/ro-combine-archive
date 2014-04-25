@@ -94,7 +94,7 @@ public class CombineToRO {
 			if (! metadata.containsResource(resource)) {
 				continue;
 			}
-			
+
 			PathAnnotation ann = new PathAnnotation();
 			ann.setAbout(manifest.relativeToBundleRoot(about));
 			ann.setContent(manifest.relativeToBundleRoot(metadataRdf.toUri()));
@@ -151,6 +151,12 @@ public class CombineToRO {
 					agent.setName(nameForAgent(agentResource));
 					pathMetadata.getCreatedBy().add(agent);
 				}
+			}
+			if (pathMetadata.getFile().equals(bundle.getRoot()) || 
+					pathMetadata.getFile().equals(metadataRdf)) { 
+				// Statements where about the RO itself
+				manifest.setCreatedOn(pathMetadata.getCreatedOn());
+				manifest.setCreatedBy(pathMetadata.getCreatedBy());
 			}
 			
 			
