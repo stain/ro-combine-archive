@@ -103,9 +103,13 @@ public class CombineToRO {
 			// Extract information that could be in our manifest
 			PathMetadata pathMetadata = manifest.getAggregation(about);
 			
-			// Created date
+			// Created date. We'll prefer dcModified.
 			Property dcCreated = metadata.getProperty("http://purl.org/dc/terms/created");
-			Statement createdSt = resource.getProperty(dcCreated);
+			Property dcModified = metadata.getProperty("http://purl.org/dc/terms/modified");
+			Statement createdSt = resource.getProperty(dcModified);
+			if (createdSt == null) {
+				createdSt = resource.getProperty(dcCreated);
+			}
 			if (createdSt != null) {
 				FileTime fileTime = RDFUtils.literalAsFileTime(createdSt.getObject());
 				if (fileTime == null && createdSt.getResource().isResource()) { 
@@ -122,7 +126,6 @@ public class CombineToRO {
 					if (pathMetadata.getFile() != null) {
 						Files.setLastModifiedTime(pathMetadata.getFile(), fileTime);
 					}
-					System.out.println("Setting time to " + fileTime + " for " + pathMetadata.getFile());
 				}
 			}
 			
