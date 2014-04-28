@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,13 +43,15 @@ public class TestCombineToRO {
 		try (Bundle bundle = Bundles.openBundle(file)) {
 			Manifest manifest = manifest = bundle.getManifest();
 			Path manifestXml = bundle.getRoot().resolve("manifest.xml");
-			//assertTrue("manifest.xml not listed in " + manifest.getManifest(), 
-			//		manifest.getManifest().contains(manifestXml));
+			assertTrue("manifest.xml not listed in " + manifest.getManifest(), 
+					manifest.getManifest().contains(manifestXml));
 			
-//			Agent createdBy = manifest.getCreatedBy().get(0);
+//			List<Agent> manifestCreator = manifest.getCreatedBy();			
+//			Agent createdBy = manifestCreator.get(0);
 //			assertEquals("Gary Mirams", createdBy.getName());
 //			assertEquals("mbox:gary.mirams@cs.ox.ac.uk", createdBy.getUri());
-			
+//			assertEquals("2014-02-06T22:01:58Z", manifest.getCreatedOn().toString());
+//			
 			Path csvPath = bundle.getRoot().resolve("outputs_degree_of_block.csv");			
 			PathMetadata csv = manifest.getAggregation(csvPath);
 			assertEquals("text/csv", csv.getMediatype());
@@ -69,6 +72,22 @@ public class TestCombineToRO {
 		}
 		CombineToRO.combineToRO(file);
 		System.out.println(file);		
+//		try (Bundle bundle = Bundles.openBundle(file)) {
+//			Manifest manifest = manifest = bundle.getManifest();
+//			Path manifestXml = bundle.getRoot().resolve("manifest.xml");
+//			assertTrue("manifest.xml not listed in " + manifest.getManifest(), 
+//					manifest.getManifest().contains(manifestXml));
+//			
+//			List<Agent> manifestCreator = manifest.getCreatedBy();			
+//			Agent createdBy = manifestCreator.get(0);
+//			assertEquals("Gary Mirams", createdBy.getName());
+//			assertEquals("mbox:gary.mirams@cs.ox.ac.uk", createdBy.getUri());
+//			assertEquals("2014-02-06T22:01:58Z", manifest.getCreatedOn().toString());
+//			
+//			
+//			
+//		}
+		
 	}
 	
 	@Test
