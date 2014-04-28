@@ -146,6 +146,7 @@ Inspecting the modified archive will reveal the added `.ro/manifest.json`:
 
 Inspecting `.ro/manifest.json`:
       
+```json      
     {
       "@context" : [ "https://w3id.org/bundle/context" ],
       "id" : "/",
@@ -178,5 +179,5 @@ Inspecting `.ro/manifest.json`:
         "content" : "/metadata.rdf"
       } ]
     }
-
+```
     
