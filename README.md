@@ -99,6 +99,14 @@ To build, simply do `mvn clean install`:
     [INFO] Final Memory: 41M/303M
     [INFO] ------------------------------------------------------------------------
 
+# Downloading
+
+Alternatively you can download the [ro-combine-archive 0.1.0
+standalone](http://build.mygrid.org.uk/maven/repository/org/researchobject/ro-combine-archive/ro-combine-archive/0.1.0/ro-combine-archive-0.1.0-standalone.jar).
+
+Note that this download might not reflect the latest features as when building from source.
+
+
 # Executing
 
 To execute from the self-contained JAR, try:
@@ -135,8 +143,9 @@ Inspecting the modified archive will reveal the added `.ro/manifest.json`:
       inflating: paper/Kholodenko2000.pdf  
        creating: .ro/
       inflating: .ro/manifest.json       
-    stain@biggie:~/src/ro-combine-archive/target$ cat .ro/manifest.json 
 
+Inspecting `.ro/manifest.json`:
+      
     {
       "@context" : [ "https://w3id.org/bundle/context" ],
       "id" : "/",
