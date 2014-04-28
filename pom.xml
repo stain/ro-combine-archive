@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>org.researchobject.ro-combine-archive</groupId>
 	<artifactId>ro-combine-archive</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>Combine Archive / RO interoperability</name>
 
 	<dependencies>
@@ -75,7 +75,7 @@
 		<connection>scm:git:git://github.com/stain/ro-combine-archive.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/stain/ro-combine-archive.git</developerConnection>
 		<url>https://github.com/stain/ro-combine-archive/</url>
-		<tag>0.1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<licenses>
 		<license>
