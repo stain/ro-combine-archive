@@ -48,6 +48,8 @@ import com.hp.hpl.jena.rdf.model.Statement;
 
 public class CombineToRO {
 	
+	private static final URI OMEX_METADATA = URI.create("http://identifiers.org/combine.specifications/omex-metadata");
+
 	private static final String sparqlPrefixes = 			
 			"PREFIX foaf:  <http://xmlns.com/foaf/0.1/> \n"+ 
 			"PREFIX vcard: <http://www.w3.org/2006/vcard/ns#> \n"+ 
@@ -71,7 +73,18 @@ public class CombineToRO {
 	}
 
 	private static void findAnnotations(Bundle bundle) throws IOException {
-		Path metadataRdf = bundle.getRoot().resolve("metadata.rdf");
+		Path metadataRdf = null;
+		for (PathMetadata agg : bundle.getManifest().getAggregates()) {
+			if (OMEX_METADATA.equals(agg.getConformsTo())) { 
+				metadataRdf = agg.getFile();
+				break; // TODO: Support not just the first one				
+				// TODO: support external metadata with agg.getUri() ?				
+			}
+		}
+		if (metadataRdf == null) {
+			// fallback to hard-coded filename
+			metadataRdf = bundle.getRoot().resolve("metadata.rdf");
+		}
 		if (! Files.exists(metadataRdf)) { 
 			return;
 		}
