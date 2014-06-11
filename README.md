@@ -11,7 +11,7 @@ Convert/enrich [Combine Archive (OMEX)](http://co.mbine.org/documents/archive) t
 (c) University of Manchester 2014
 http://www.mygrid.org.uk/
 
-License: [LICENSE.md](MIT license)
+License: [MIT License](LICENSE.md)
 
 
 This tool enrich/convert
