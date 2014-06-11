@@ -18,7 +18,7 @@ This tool enrich/convert
 [OMEX Combine Archives](http://co.mbine.org/documents/archive)
 so that they are also valid RO Bundles. This is achieved
 by parsing the OMEX manifest and creating the equivalent
-RO Bundle manifest.
+RO Bundle manifest using the [RO Bundle API](https://github.com/wf4ever/robundle).
 
 It is planned for this tool to also perform annotation extraction
 and do the conversion from RO bundle to OMEX.
