@@ -1,5 +1,9 @@
 ro-combine-archive
 ==================
+ 
+
+[![Build Status](https://travis-ci.org/stain/ro-combine-archive.svg)](https://travis-ci.org/stain/ro-combine-archive)
+[![doi:10.5281/zenodo.10439](https://zenodo.org/badge/doi/10.5281/zenodo.10439.png)](http://dx.doi.org/10.5281/zenodo.10439)
 
 Convert/enrich [Combine Archive (OMEX)](http://co.mbine.org/documents/archive) to 
 [Research Object Bundle](https://w3id.org/bundle).
