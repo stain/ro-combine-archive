@@ -1,7 +1,7 @@
 language: java
 
 before_install:
-  - echo """<?xml version="1.0" encoding="UTF-8"?>
+  - echo '<?xml version="1.0" encoding="UTF-8"?>
     <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <mirrors>
@@ -53,4 +53,4 @@ before_install:
         <activeProfile>artifactory</activeProfile>
       </activeProfiles>
     </settings>
-    """ > ~/.m2/settings.xml 
+    ' > ~/.m2/settings.xml 
