@@ -14,7 +14,7 @@
 		<dependency>
 			<groupId>org.purl.wf4ever.robundle</groupId>
 			<artifactId>robundle</artifactId>
-			<version>0.4.1/version>
+			<version>0.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
