@@ -23,6 +23,8 @@ RO Bundle manifest using the [RO Bundle API](https://github.com/wf4ever/robundle
 It is planned for this tool to also perform annotation extraction
 and do the conversion from RO bundle to OMEX.
 
+Also available: [slides](http://www.slideshare.net/soilandreyes/2014-0613research-objects-in-the-wild).
+
 
 # Authors
 * [Stian Soiland-Reyes](http://orcid.org/0000-0001-9842-9718) &lt;soiland-reyes@cs.manchester.ac.uk&gt;
