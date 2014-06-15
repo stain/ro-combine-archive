@@ -24,10 +24,16 @@ It is planned for this tool to also perform annotation extraction
 and do the conversion from RO bundle to OMEX.
 
 
+
 # Authors
 * [Stian Soiland-Reyes](http://orcid.org/0000-0001-9842-9718) &lt;soiland-reyes@cs.manchester.ac.uk&gt;
 * [Matthew Gamble](http://orcid.org/0000-0003-4913-1485) &lt;matthew.gamble@gmail.com&gt;
 
+# Slides
+
+[![Slides](http://image.slidesharecdn.com/yedlttqatdov0se6ku2d-140613102315-phpapp01/95/slide-1-638.jpg?cb=1402673174)](http://www.slideshare.net/soilandreyes/2014-0613research-objects-in-the-wild)
+
+[Slides 2014-06-13](https://onedrive.live.com/view.aspx?cid=37935FEEE4DF1087&resid=37935FEEE4DF1087!788&app=PowerPoint) 
 
 # Mechanism
 
