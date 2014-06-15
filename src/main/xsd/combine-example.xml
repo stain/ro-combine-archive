@@ -8,7 +8,6 @@
 	 -->
 	<content format="http://identifiers.org/combine.specifications/omex-manifest"
 		location="./manifest.xml" />
-	<content />
 	<content location="./model/model.xml"
 		format="http://identifiers.org/combine.specifications/sbml" />
 	<content location="./simulation.xml" master="true"
