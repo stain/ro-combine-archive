@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<omexManifest
+	xmlns="http://identifiers.org/combine.specifications/omex-manifest"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://identifiers.org/combine.specifications/omex-manifest combine.xsd ">
+	<!-- 
+	Based on Figure on Page 8 http://co.mbine.org/specifications/combine_archive-Draft1.pdf
+	 -->
+	<content format="http://identifiers.org/combine.specifications/omex-manifest"
+		location="./manifest.xml" />
+	<content />
+	<content location="./model/model.xml"
+		format="http://identifiers.org/combine.specifications/sbml" />
+	<content location="./simulation.xml" master="true"
+		format="http://identifiers.org/combine.specifications/sedml" />
+	<content location="./article.pdf" format="application/pdf" />
+	<content location="./metadata.rdf"
+		format="http://identifiers.org/combine.specifications/omex-metadata" />
+</omexManifest>
