@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://identifiers.org/combine.specifications/omex-manifest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://identifiers.org/combine.specifications/omex-manifest">
+    <xsd:element name="omexManifest" type="OmexManifest"></xsd:element>
+
+    <xsd:complexType name="OmexManifest">
+    	<xsd:sequence>
+    		<xsd:element name="element" type="Content"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+        
+    <xsd:complexType name="Content">
+    	<xsd:attribute name="location" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="format" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="master" type="xsd:boolean" use="optional" default="false"></xsd:attribute>
+    </xsd:complexType>
+</xsd:schema>
