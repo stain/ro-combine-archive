@@ -1,30 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>net.sf.taverna</groupId>
-		<artifactId>parent</artifactId>
-		<version>0.2.2014-03-19</version>
-	</parent>
-	<groupId>org.researchobject.ro-combine-archive</groupId>
-	<artifactId>ro-combine-archive</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
-	<name>Combine Archive / RO interoperability</name>
+        <modelVersion>4.0.0</modelVersion>
+        <parent>
+                <groupId>net.sf.taverna</groupId>
+                <artifactId>parent</artifactId>
+                <version>0.2.2014-03-19</version>
+        </parent>
+        <groupId>org.researchobject.ro-combine-archive</groupId>
+        <artifactId>ro-combine-archive</artifactId>
+        <version>0.1.1-SNAPSHOT</version>
+        <name>Combine Archive / RO interoperability</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.purl.wf4ever.robundle</groupId>
-			<artifactId>robundle</artifactId>
-			<version>0.4.1</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
+        <dependencies>
+                <dependency>
+                        <groupId>org.purl.wf4ever.robundle</groupId>
+                        <artifactId>robundle</artifactId>
+                        <version>0.5.0-SNAPSHOT</version>
+                </dependency>
+                <dependency>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                        <version>4.11</version>
+                        <scope>test</scope>
+                </dependency>
+        </dependencies>
+        <build>
+            <plugins>
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -50,58 +51,58 @@
                                     <resource>META-INF/spring</resource>
                                 </transformer>
                                  <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                    				<resource>META-INF/README</resource>
-                    				<file>README.md</file>                    				
-                				</transformer>                				                               
+                                                    <resource>META-INF/README</resource>
+                                                    <file>README.md</file>                                                    
+                                                </transformer>                                                                               
                                  <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                    				<resource>log4j.properties</resource>
-                    				<file>src/shade/resouces/log4j.properties</file>                    				
-                				</transformer>
+                                                    <resource>log4j.properties</resource>
+                                                    <file>src/shade/resouces/log4j.properties</file>                                                    
+                                                </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                    				<resource>logging..properties</resource>
-                    				<file>src/shade/resouces/logging.properties</file>                    				
-                				</transformer>
+                                                    <resource>logging..properties</resource>
+                                                    <file>src/shade/resouces/logging.properties</file>                                                    
+                                                </transformer>
                                 
                             </transformers>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-    	</plugins>
+            </plugins>
     </build>
 
 
-	<scm>
-		<connection>scm:git:git://github.com/stain/ro-combine-archive.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/stain/ro-combine-archive.git</developerConnection>
-		<url>https://github.com/stain/ro-combine-archive/</url>
-		<tag>HEAD</tag>
-	</scm>
-	<licenses>
-		<license>
-			<name>MIT license</name>
-			<url>http://opensource.org/licenses/MIT</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<repositories>
-		<repository>
-			<releases />
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>mygrid-repository</id>
-			<name>myGrid repository</name>
-			<url>http://www.mygrid.org.uk/maven/repository</url>
-		</repository>
-		<repository>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots />
-			<id>mygrid-snapshot-repository</id>
-			<name>myGrid Snapshot Repository</name>
-			<url>http://www.mygrid.org.uk/maven/snapshot-repository</url>
-		</repository>
-	</repositories>
+        <scm>
+                <connection>scm:git:git://github.com/stain/ro-combine-archive.git</connection>
+                <developerConnection>scm:git:ssh://git@github.com/stain/ro-combine-archive.git</developerConnection>
+                <url>https://github.com/stain/ro-combine-archive/</url>
+                <tag>HEAD</tag>
+        </scm>
+        <licenses>
+                <license>
+                        <name>MIT license</name>
+                        <url>http://opensource.org/licenses/MIT</url>
+                        <distribution>repo</distribution>
+                </license>
+        </licenses>
+        <repositories>
+                <repository>
+                        <releases />
+                        <snapshots>
+                                <enabled>false</enabled>
+                        </snapshots>
+                        <id>mygrid-repository</id>
+                        <name>myGrid repository</name>
+                        <url>http://www.mygrid.org.uk/maven/repository</url>
+                </repository>
+                <repository>
+                        <releases>
+                                <enabled>false</enabled>
+                        </releases>
+                        <snapshots />
+                        <id>mygrid-snapshot-repository</id>
+                        <name>myGrid Snapshot Repository</name>
+                        <url>http://www.mygrid.org.uk/maven/snapshot-repository</url>
+                </repository>
+        </repositories>
 </project>

@@ -1,11 +1,10 @@
-ro-combine-archive
-==================
+ro-combine-archive ==================
  
 
 [![Build Status](https://travis-ci.org/stain/ro-combine-archive.svg)](https://travis-ci.org/stain/ro-combine-archive)
 [![doi:10.5281/zenodo.10439](https://zenodo.org/badge/doi/10.5281/zenodo.10439.png)](http://dx.doi.org/10.5281/zenodo.10439)
 
-Convert/enrich [Combine Archive (OMEX)](http://co.mbine.org/documents/archive) to 
+Convert [Combine Archive (OMEX)](http://co.mbine.org/documents/archive) to/from 
 [Research Object Bundle](https://w3id.org/bundle).
 
 (c) University of Manchester 2014
@@ -16,12 +15,18 @@ License: [MIT License](LICENSE.md)
 
 This tool enrich/convert
 [OMEX Combine Archives](http://co.mbine.org/documents/archive)
-so that they are also valid RO Bundles. This is achieved
-by parsing the OMEX manifest and creating the equivalent
-RO Bundle manifest using the [RO Bundle API](https://github.com/wf4ever/robundle).
+so that they are also valid 
+[RO Bundles](https://w3id.org/bundle).
 
-It is planned for this tool to also perform annotation extraction
-and do the conversion from RO bundle to OMEX.
+
+This is achieved by parsing the OMEX manifest and creating the equivalent
+RO Bundle manifest (or vice versa), using the [RO Bundle
+API](https://github.com/wf4ever/robundle).
+
+Note that the actual implementation for parsing and generating the OMEX manifest
+is now a standard part of the RO Bundle API. For details, see the Java package
+[org.purl.wf4ever.robundle.manifest.combine](https://github.com/wf4ever/robundle/tree/master/src/main/java/org/purl/wf4ever/robundle/manifest/combine)
+
 
 
 
@@ -35,7 +40,7 @@ and do the conversion from RO bundle to OMEX.
 
 [Slides 2014-06-13](https://onedrive.live.com/view.aspx?cid=37935FEEE4DF1087&resid=37935FEEE4DF1087!788&app=PowerPoint) 
 
-# Mechanism
+# Mechanism: Parsing OMEX
 
 OMEX Combine Archives have similar mechanism of describing the bundled resources in a manifest.
 
@@ -43,13 +48,17 @@ An OMEX archive can also be a valid RO Bundle, and an RO Bundle can also be an
 OMEX archive, simply by having both manifests included in the ZIP archive. 
 (as long as you don't then modify the archive without updating both manifests!)
 
-The conversion therefore parses the OMEX manifest and creates equivalent entries
-in the RO Bundle manifest, copying over the `format` information to either 
+The conversion therefore parses the OMEX manifest
+using an 
+[XSD Schema](https://github.com/wf4ever/robundle/blob/master/src/main/xsd/combine.xsd),
+and creates equivalent entries in the RO Bundle manifest, copying over the
+`format` information to either 
 `mediatype` or `conformsTo` (depending if it is an absolute URI).
 
-When parsing the OMEX `manifest.xml`, `location` is interpreted as a URI
-reference relative to the `manifest.xml`. Absolute URIs in `location` are
-supported, recorded as an `uri` aggregation in the RO bundle.
+When parsing the OMEX `manifest.xml`, `location` is interpreted as an
+unescaped path within the bundle (relative to the `manifest.xml`)
+Absolute URIs in `location` are supported, recorded as an `uri` aggregation in
+the RO bundle.
 
 The base URI for files in the archive
 is generated using the [app:// URI scheme](http://www.w3.org/TR/app-uri/)
@@ -68,7 +77,7 @@ by the archive (or is the archive itself), and then add `metadata.rdf` to
 The metadata file is also examined for `dcterms:created`, `dcterms:modified`
 and `dcterms:modified` annotations, which are propagated into the RO Bundle
 manifest. The timestamp of affected files in the ZIP archive will also be set
-to the specified modified time.
+to the specified modified time from this metadata, if it exists.
 
 Note that the [RO Bundle `mimetype`](http://wf4ever.github.io/ro/bundle/#ucf)
 file is *not* added, as an OMEX archive (and its
