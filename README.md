@@ -1,4 +1,5 @@
-ro-combine-archive ==================
+ro-combine-archive
+==================
  
 
 [![Build Status](https://travis-ci.org/stain/ro-combine-archive.svg)](https://travis-ci.org/stain/ro-combine-archive)
