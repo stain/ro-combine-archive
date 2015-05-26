@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<omexManifest xmlns="http://identifiers.org/combine.specifications/omex-manifest"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://identifiers.org/combine.specifications/omex-manifest combine.xsd" 
+>
+  <content location="./manifest.xml" format="http://identifiers.org/combine.specifications/omex-manifest" master="false" />
+  <content location="./BorisEJB.xml" format="http://identifiers.org/combine.specifications/sbml" master="true" />
+  <content location="./paper/Kholodenko2000.pdf" format="application/pdf" master="false" />
+  <content location="./paper/a/b/c/d/test.txt" format="plain/text" master="false" />
+  <content location="http://www.ebi.ac.uk/biomodels-main/BIOMD0000000010" format="http://identifiers.org/combine.specifications/sbml" master="false" />
+  <content location="./manifest0.xml" format="http://identifiers.org/combine.specifications/omex-metadata" master="false" />
+</omexManifest>

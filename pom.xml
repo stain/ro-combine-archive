@@ -1,108 +1,113 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-        <modelVersion>4.0.0</modelVersion>
-        <parent>
-                <groupId>net.sf.taverna</groupId>
-                <artifactId>parent</artifactId>
-                <version>0.2.2014-03-19</version>
-        </parent>
-        <groupId>org.researchobject.ro-combine-archive</groupId>
-        <artifactId>ro-combine-archive</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
-        <name>Combine Archive / RO interoperability</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>9</version>
+	</parent>
+	<groupId>org.researchobject.ro-combine-archive</groupId>
+	<artifactId>ro-combine-archive</artifactId>
+	<version>0.1.1-SNAPSHOT</version>
+	<name>Combine Archive / RO interoperability</name>
 
-        <dependencies>
-                <dependency>
-                        <groupId>org.purl.wf4ever.robundle</groupId>
-                        <artifactId>robundle</artifactId>
-                        <version>0.5.0-SNAPSHOT</version>
-                </dependency>
-                <dependency>
-                        <groupId>junit</groupId>
-                        <artifactId>junit</artifactId>
-                        <version>4.11</version>
-                        <scope>test</scope>
-                </dependency>
-        </dependencies>
-        <build>
-            <plugins>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.taverna.language</groupId>
+			<artifactId>taverna-robundle</artifactId>
+			<version>0.15.0-incubating-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>				
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<shadedClassifierName>standalone</shadedClassifierName>
+
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>org.researchobject.combinearchive.CombineToRO</mainClass>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+									<resource>META-INF/spring</resource>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+									<resource>META-INF/README</resource>
+									<file>README.md</file>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+									<resource>log4j.properties</resource>
+									<file>src/shade/resouces/log4j.properties</file>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
+									<resource>logging..properties</resource>
+									<file>src/shade/resouces/logging.properties</file>
+								</transformer>
+
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <!--<version>2.0</version> does not work with Maven 2 :( -->
-                <version>1.7.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <shadedClassifierName>standalone</shadedClassifierName>
-                            
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.researchobject.combinearchive.CombineToRO</mainClass>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-                                    <resource>META-INF/spring</resource>
-                                </transformer>
-                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                                                    <resource>META-INF/README</resource>
-                                                    <file>README.md</file>                                                    
-                                                </transformer>                                                                               
-                                 <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                                                    <resource>log4j.properties</resource>
-                                                    <file>src/shade/resouces/log4j.properties</file>                                                    
-                                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.IncludeResourceTransformer">
-                                                    <resource>logging..properties</resource>
-                                                    <file>src/shade/resouces/logging.properties</file>                                                    
-                                                </transformer>
-                                
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            </plugins>
-    </build>
+	<scm>
+		<connection>scm:git:git://github.com/stain/ro-combine-archive.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/stain/ro-combine-archive.git</developerConnection>
+		<url>https://github.com/stain/ro-combine-archive/</url>
+		<tag>HEAD</tag>
+	</scm>
+	<licenses>
+		<license>
+			<name>MIT license</name>
+			<url>http://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<repositories>
 
-
-        <scm>
-                <connection>scm:git:git://github.com/stain/ro-combine-archive.git</connection>
-                <developerConnection>scm:git:ssh://git@github.com/stain/ro-combine-archive.git</developerConnection>
-                <url>https://github.com/stain/ro-combine-archive/</url>
-                <tag>HEAD</tag>
-        </scm>
-        <licenses>
-                <license>
-                        <name>MIT license</name>
-                        <url>http://opensource.org/licenses/MIT</url>
-                        <distribution>repo</distribution>
-                </license>
-        </licenses>
-        <repositories>
-                <repository>
-                        <releases />
-                        <snapshots>
-                                <enabled>false</enabled>
-                        </snapshots>
-                        <id>mygrid-repository</id>
-                        <name>myGrid repository</name>
-                        <url>http://www.mygrid.org.uk/maven/repository</url>
-                </repository>
-                <repository>
-                        <releases>
-                                <enabled>false</enabled>
-                        </releases>
-                        <snapshots />
-                        <id>mygrid-snapshot-repository</id>
-                        <name>myGrid Snapshot Repository</name>
-                        <url>http://www.mygrid.org.uk/maven/snapshot-repository</url>
-                </repository>
-        </repositories>
+		<repository>
+			<id>apache.snapshots</id>
+			<name>Apache Snapshot Repository</name>
+			<url>http://repository.apache.org/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
 </project>

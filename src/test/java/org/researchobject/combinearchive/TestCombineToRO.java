@@ -12,13 +12,13 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.taverna.robundle.Bundle;
+import org.apache.taverna.robundle.Bundles;
+import org.apache.taverna.robundle.manifest.Agent;
+import org.apache.taverna.robundle.manifest.Manifest;
+import org.apache.taverna.robundle.manifest.PathMetadata;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.purl.wf4ever.robundle.Bundle;
-import org.purl.wf4ever.robundle.Bundles;
-import org.purl.wf4ever.robundle.manifest.Agent;
-import org.purl.wf4ever.robundle.manifest.Manifest;
-import org.purl.wf4ever.robundle.manifest.PathMetadata;
 
 public class TestCombineToRO {
 
@@ -56,7 +56,7 @@ public class TestCombineToRO {
 			Path csvPath = bundle.getRoot().resolve("outputs_degree_of_block.csv");			
 			PathMetadata csv = manifest.getAggregation(csvPath);
 			assertEquals("text/csv", csv.getMediatype());
-			Agent csvCreator = csv.getCreatedBy().get(0);
+			Agent csvCreator = csv.getCreatedBy();
 			assertEquals("Gary Mirams", csvCreator.getName());
 			assertEquals("mbox:gary.mirams@cs.ox.ac.uk", csvCreator.getUri().toString());
 			assertEquals("2014-02-06T22:01:58Z", csv.getCreatedOn().toString());
