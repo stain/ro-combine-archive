@@ -60,8 +60,14 @@ public class TestCombineToRO {
 			assertEquals("Gary Mirams", csvCreator.getName());
 			assertEquals("mbox:gary.mirams@cs.ox.ac.uk", csvCreator.getUri().toString());
 			assertEquals("2014-02-06T22:01:58Z", csv.getCreatedOn().toString());
-			
-			
+		}
+		
+		try (Bundle bundle = Bundles.openBundle(file)) {
+			Path manifestXml = bundle.getRoot().resolve("manifest.xml");
+			String xml = Bundles.getStringValue(manifestXml);
+			System.out.println(xml);
+			assertTrue(xml.contains("./outputs_degree_of_block.csv"));
+			assertTrue(xml.contains("text/csv"));
 		}
 	}
 	
